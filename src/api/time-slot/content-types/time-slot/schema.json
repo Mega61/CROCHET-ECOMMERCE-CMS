@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "time_slots",
+  "info": {
+    "singularName": "time-slot",
+    "pluralName": "time-slots",
+    "displayName": "Time Slot",
+    "description": "Available time slots for project scheduling"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "weekStartDate": {
+      "type": "date",
+      "required": true
+    },
+    "weekEndDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["Available", "Reserved", "Completed"],
+      "default": "Available",
+      "required": true
+    },
+    "maxProjects": {
+      "type": "integer",
+      "required": true,
+      "default": 1,
+      "min": 1
+    },
+    "currentProjects": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "notes": {
+      "type": "text"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "timeSlot"
+    }
+  }
+}
